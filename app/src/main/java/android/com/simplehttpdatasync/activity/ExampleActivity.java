@@ -1,17 +1,35 @@
 package android.com.simplehttpdatasync.activity;
 
 import android.com.simplehttpdatasync.R;
+import android.com.simplehttpdatasync.datasync.ExampleUserDataSync;
+import android.com.simplehttpdatasync.datasync.net.RequestListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class ExampleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showApiExamle();
+    }
+
+    private void showApiExamle() {
+        ExampleUserDataSync _DataSync = new ExampleUserDataSync();
+        _DataSync.getVerifyCode("QuitoKong", new RequestListener() {
+            @Override
+            public void onComplete(String response) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
     @Override

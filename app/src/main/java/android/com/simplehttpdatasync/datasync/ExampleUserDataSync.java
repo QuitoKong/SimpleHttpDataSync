@@ -13,26 +13,18 @@ import android.com.simplehttpdatasync.datasync.util.Parameters;
  */
 public class ExampleUserDataSync extends DataSyncBase {
 
-    // 模块
-    protected static final String MODULE_USER_CENTER = "user_center";
-    // 动作
-    protected static final String ACTION_LOGIN = "login";
-    protected static final String ACTION_REGISTER = "register";
-    protected static final String ACTION_GET_VERIFYCODE = "get_verifyode";
-    protected static final String ACTION_EDIT_PASSWORD = "edit_password";
-    protected static final String ACTION_RESET_PASSWORD = "reset_password";
-    protected static final String ACTION_REBIND_PHONE = "rebind_phone";
-    // 标签
-    protected static final String TELEPHONE = "telephone";
-    protected static final String OLDTELEPHONE = "oldtelephone";
-    protected static final String NEWTELEPHONE = "newtelephone";
-    protected static final String PASSWORD = "password";
-    protected static final String OLDPASSWORD = "oldPassword";
-    protected static final String NEWPASSWORD = "newPassword";
-    protected static final String CODE = "code";
     // 网络请求动作标签
     protected static final String ACTION = "action";
     protected static final String MODULE = "module";
+    // 模块
+    protected static final String MODULE_USER_CENTER = "user_center";
+    // 动作
+    protected static final String ACTION_REGISTER = "register";
+    protected static final String ACTION_GET_VERIFYCODE = "get_verifyode";
+    // 标签
+    protected static final String TELEPHONE = "telephone";
+    protected static final String PASSWORD = "password";
+    protected static final String CODE = "code";
 
     /**
      * 获取验证码
