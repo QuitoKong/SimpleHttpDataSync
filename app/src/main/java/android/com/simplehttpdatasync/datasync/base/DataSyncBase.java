@@ -13,31 +13,37 @@ import android.com.simplehttpdatasync.datasync.util.Parameters;
 public abstract class DataSyncBase {
 
     // IP : 访问的服务器地址
-    public static final String SERVER_IP = "192.168.1.1/webapi/?";
+    public static final String SERVER_IP = "192.168.1.1/api/?";
     // post请求方式
-    protected static final String HTTPMETHOD_POST = "POST";
+    private static final String HTTPMETHOD_POST = "POST";
     // get请求方式
-    protected static final String HTTPMETHOD_GET = "GET";
-
-    // 网络请求动作标签
-    protected static final String ACTION = "action";
-    protected static final String MODULE = "module";
+    private static final String HTTPMETHOD_GET = "GET";
 
     /**
-     * @param @param storeid 商店的ID
-     * @param @param url 连接的服务器的地址，必须传递过来
-     * @param @param params 传递给服务器的参数，必须传递过来
-     * @param @param httpMethod 模式：get/post
-     * @param @param listener
+     * @param url        连接的服务器的地址，必须传递过来
+     * @param json       post的内容
+     * @param parameters 传递给服务器的参数，必须传递过来
+     * @param httpMethod 模式：get/post
+     * @param listener
      * @return void
      * @throws
      * @Title: request
      * @Description:
      */
-    protected void request( final String url,
-                           final Parameters parameters, final String httpMethod,
-                           RequestListener listener) {
-        AsyncRunner.request(url, parameters, httpMethod, listener);
+    private void request(final String url, final String json,
+                         final Parameters parameters, final String httpMethod,
+                         RequestListener listener) {
+        AsyncRunner.request(url, json, parameters, httpMethod, listener);
+    }
+
+    protected void post(final String url, final String json,
+                        final Parameters parameters, RequestListener listener) {
+        request(url, json, parameters, HTTPMETHOD_GET, listener);
+    }
+
+    protected void get(final String url,
+                       final Parameters parameters, RequestListener listener) {
+        request(url, null, parameters, HTTPMETHOD_POST, listener);
     }
 
 }

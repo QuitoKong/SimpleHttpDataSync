@@ -30,20 +30,23 @@ public class ExampleUserDataSync extends DataSyncBase {
     protected static final String OLDPASSWORD = "oldPassword";
     protected static final String NEWPASSWORD = "newPassword";
     protected static final String CODE = "code";
+    // 网络请求动作标签
+    protected static final String ACTION = "action";
+    protected static final String MODULE = "module";
 
     /**
-     *  获取验证码
+     * 获取验证码
      */
     public void getVerifyCode(String telephone, RequestListener pListener) {
         Parameters parameters = new Parameters();
         parameters.add(MODULE, MODULE_USER_CENTER);
         parameters.add(ACTION, ACTION_GET_VERIFYCODE);
         parameters.add(TELEPHONE, telephone);
-        request(SERVER_IP + "?", parameters, HTTPMETHOD_POST, pListener);
+        post(SERVER_IP, "postJsonString", parameters, pListener);
     }
 
     /**
-     *  注册
+     * 注册
      */
     public void register(String telephone, String pwd, String code, RequestListener pListener) {
         Parameters parameters = new Parameters();
@@ -52,61 +55,8 @@ public class ExampleUserDataSync extends DataSyncBase {
         parameters.add(TELEPHONE, telephone);
         parameters.add(PASSWORD, pwd);
         parameters.add(CODE, code);
-        request(SERVER_IP, parameters, HTTPMETHOD_POST, pListener);
+        get(SERVER_IP, parameters, pListener);
     }
 
-    /**
-     *  登陆
-     */
-    public void login(String telephone, String pwd,
-                      RequestListener pListener) {
-        Parameters parameters = new Parameters();
-        parameters.add(MODULE, MODULE_USER_CENTER);
-        parameters.add(ACTION, ACTION_LOGIN);
-        parameters.add(TELEPHONE, telephone);
-        parameters.add(PASSWORD, pwd);
-        request(SERVER_IP, parameters, HTTPMETHOD_POST, pListener);
-    }
-
-    /**
-     * 修改密码
-     */
-    public void updatePwd(String telephone, String oldPwd,
-                          String newPwd, RequestListener pListener) {
-        Parameters parameters = new Parameters();
-        parameters.add(MODULE, MODULE_USER_CENTER);
-        parameters.add(ACTION, ACTION_EDIT_PASSWORD);
-        parameters.add(TELEPHONE, telephone);
-        parameters.add(OLDPASSWORD, oldPwd);
-        parameters.add(NEWPASSWORD, newPwd);
-        request(SERVER_IP, parameters, HTTPMETHOD_POST, pListener);
-    }
-
-    /*
-     * 重置密码
-     */
-    public void resetPwd(String telephone, String newPwd, String code, RequestListener pListener) {
-        Parameters parameters = new Parameters();
-        parameters.add(MODULE, MODULE_USER_CENTER);
-        parameters.add(ACTION, ACTION_RESET_PASSWORD);
-        parameters.add(TELEPHONE, telephone);
-        parameters.add(NEWPASSWORD, newPwd);
-        parameters.add(CODE, code);
-        request(SERVER_IP, parameters, HTTPMETHOD_POST, pListener);
-    }
-
-    /*
-   改绑手机
-    */
-    public void rebindPhone(String telephone, String newTelephone, String password, String code, RequestListener pListener) {
-        Parameters parameters = new Parameters();
-        parameters.add(MODULE, MODULE_USER_CENTER);
-        parameters.add(ACTION, ACTION_REBIND_PHONE);
-        parameters.add(OLDTELEPHONE, telephone);
-        parameters.add(NEWTELEPHONE, newTelephone);
-        parameters.add(PASSWORD, password);
-        parameters.add(CODE, code);
-        request(SERVER_IP, parameters, HTTPMETHOD_POST, pListener);
-    }
 
 }
